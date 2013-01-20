@@ -4,8 +4,8 @@ object CountingPointMutations {
 
   def main(args: Array[String]): Unit = {
 
-//    val fileName = "cons_real.txt"
-    val fileName = "cons_sample.txt"
+//    val fileName = "L4_HAMM_test.txt"
+    val fileName = "L4_HAMM_real.txt"
     val dnaStrings = getDnaStringsFromFile(fileName)
     var hammingDistance = 0
 

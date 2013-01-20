@@ -5,7 +5,7 @@ object SpeedUpMotifFinding {
   def main(args: Array[String]): Unit = {
 
     //    val big = "CAGTAAGCAGGGACTG"
-    val fileName = "kmp_sample.txt"
+    val fileName = "L7_KMP_sample.txt"
     val file = new java.io.File(ClassLoader.getSystemResource(fileName).toURI())
     val fileStream = scala.io.Source.fromFile(file)
     var big = fileStream.mkString
@@ -38,7 +38,7 @@ object SpeedUpMotifFinding {
 
     println(big.toCharArray().mkString(" "))
     println(failureArray.mkString(" "))
-    val answerFile = new java.io.File(ClassLoader.getSystemResource("kmp_answer.txt").toURI())
+    val answerFile = new java.io.File(ClassLoader.getSystemResource(fileName).toURI())
     Util.writeToFile(answerFile, failureArray.mkString(" "))
 
   }

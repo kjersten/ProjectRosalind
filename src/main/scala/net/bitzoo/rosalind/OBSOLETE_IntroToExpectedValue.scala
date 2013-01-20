@@ -1,5 +1,8 @@
 package net.bitzoo.rosalind
 
+/*
+ * This problem is no longer in the Project Rosalind problem set
+ */
 object IntroToExpectedValue {
 
   def main(args: Array[String]): Unit = {

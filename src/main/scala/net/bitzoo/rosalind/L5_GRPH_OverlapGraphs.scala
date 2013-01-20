@@ -4,8 +4,8 @@ object OverlapGraphs {
 
   def main(args: Array[String]): Unit = {
     // parse the list of DNA strings from the sample dataset or the real dataset
-    //    val fileName = "grph_sample.txt"
-    val fileName = "grph_real.txt"
+    //    val fileName = "L5_GRPH_test.txt"
+    val fileName = "L5_GRPH_real.txt"
     val dnaStrings = getDnaStringsFromFile(fileName)
 
     for (a <- dnaStrings) {

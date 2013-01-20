@@ -7,7 +7,7 @@ object EnumeratingGeneOrders {
 
   def main(args: Array[String]): Unit = {
 
-    val fileName = "perm_answer.txt"
+    val fileName = "L5_PERM_answer.txt"
     val dateFile = new java.io.File(ClassLoader.getSystemResource(fileName).toURI())
     val answer = new StringBuffer("")
 

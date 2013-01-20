@@ -5,8 +5,8 @@ object GCContent {
   def main(args: Array[String]): Unit = {
 
     // parse the list of DNA strings from the sample dataset or the real dataset
-//    val fileName = "gc_sample.txt"
-    val fileName = "gc_real.txt"
+//    val fileName = "L4_GC_test.txt"
+    val fileName = "L4_GC_real.txt"
     val dnaStrings = getDnaStringsFromFile(fileName)
     
     // initialize a map of all DNA strings and their GC content

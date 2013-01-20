@@ -4,8 +4,8 @@ object ProteinTranslation {
 
   def main(args: Array[String]): Unit = {
 
-//    val fileName = "prot_sample.txt"
-    val fileName = "prot_real.txt"
+//    val fileName = "L5_PROT_test.txt"
+    val fileName = "L5_PROT_real.txt"
     val rnaCodons = getRnaCodonsFromFile(fileName)
     var proteinString = new StringBuilder
     

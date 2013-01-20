@@ -6,8 +6,8 @@ object ConsensusAndProfile {
 
   def main(args: Array[String]): Unit = {
 
-    val fileName = "cons_sample.txt"
-    val fileName2 = "cons_real.txt"
+    val fileName = "L5_CONS_test.txt"
+    val fileName2 = "L5_CONS_real.txt"
     val dnaStrings = getDnaStringsFromFile(fileName2)
     val profile = getInitialProfileMap(dnaStrings.first.length)
 
