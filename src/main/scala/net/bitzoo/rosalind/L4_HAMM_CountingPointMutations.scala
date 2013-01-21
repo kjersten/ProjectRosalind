@@ -2,34 +2,20 @@ package net.bitzoo.rosalind
 
 object CountingPointMutations {
 
-  def main(args: Array[String]): Unit = {
-
-//    val fileName = "L4_HAMM_test.txt"
-    val fileName = "L4_HAMM_real.txt"
-    val dnaStrings = getDnaStringsFromFile(fileName)
+  /**
+   * Given two DNA strings of equal length, 
+   * return the Hamming distance, i.e. the number of 
+   * corresponding symbols that differ between the two strings
+   */
+  def getAnswer(fileName: String): Int = {
+    val dnaStrings = Util.getTwoDnaStringsFromFile(fileName)
     var hammingDistance = 0
 
     for (i <- 0 to dnaStrings._1.length - 1) {
       if (dnaStrings._1.charAt(i) != dnaStrings._2.charAt(i)) hammingDistance += 1
     }
 
-    Console.println(hammingDistance)
-  }
-
-  def getDnaStringsFromFile(fileName: String): Tuple2[String, String] = {
-
-    // read from a file
-    val file = new java.io.File(ClassLoader.getSystemResource(fileName).toURI())
-    val fileStream = scala.io.Source.fromFile(file)
-
-    var string1 = fileStream.getLine(0)
-    var string2 = fileStream.getLine(1)
-
-    // close the file
-    fileStream.close()
-
-    // return the map
-    (string1, string2)
+    hammingDistance
   }
 
 }

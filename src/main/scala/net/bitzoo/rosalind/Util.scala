@@ -25,7 +25,7 @@ object Util {
    * CCATCGGTAGCGCATCCTTAGTCCAATTAAGTCCCTATCCAG
    */
   def getDnaStringsFromFile(fileName: String): Map[String, String] = {
-    
+
     // read from a file
     val file = new java.io.File(ClassLoader.getSystemResource(fileName).toURI())
     val fileStream = scala.io.Source.fromFile(file)
@@ -50,6 +50,23 @@ object Util {
 
     // return the map
     dnaStrings
+  }
+
+  /** parse two strings from a file, assuming that each line contains a DNA string */
+  def getTwoDnaStringsFromFile(fileName: String): Tuple2[String, String] = {
+
+    // read from a file
+    val file = new java.io.File(ClassLoader.getSystemResource(fileName).toURI())
+    val fileStream = scala.io.Source.fromFile(file)
+
+    var string1 = fileStream.getLine(0)
+    var string2 = fileStream.getLine(1)
+
+    // close the file
+    fileStream.close()
+
+    // return the tuple
+    (string1, string2)
   }
 
 }
