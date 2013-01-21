@@ -2,15 +2,19 @@ package net.bitzoo.rosalind
 
 object CountingNucleotides {
 
+  /**
+   * For a given DNA string, return the number of 
+   * occurrences of 'A', 'C', 'G', and 'T'
+   */
   def getAnswer(polymer: String): String = {
     
-    // how long does it take to execute doTheFirstThingYouThinkOf?
+    // how long does it take to solve the typical way?
     val start1 = System.currentTimeMillis()
     val result1 = doTheFirstThingYouThinkOf(polymer)
     val end1 = System.currentTimeMillis();
     Console.println("Iterating through the dataset once for each base took " + (end1 - start1) + " milliseconds\n\n")
 
-    // how long does it take to execute useMapReduce?
+    // how long does it take to solve using MapReduce?
     val start2 = System.currentTimeMillis()
     val result2 = useMapReduce(polymer)
     val end2 = System.currentTimeMillis()
