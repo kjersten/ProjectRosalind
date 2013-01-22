@@ -8,7 +8,7 @@ object EnumeratingGeneOrders {
    */
   def getAnswer(permutationLength: Int): List[List[Int]] = {
 
-    val options = (1 until permutationLength + 1).toList
+    val options = (1 to permutationLength).toList
     var sequences = List[List[Int]]()
     sequences = tryAllPermutations(options, List[Int](), sequences)
 

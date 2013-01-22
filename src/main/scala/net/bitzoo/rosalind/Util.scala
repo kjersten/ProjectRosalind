@@ -143,4 +143,19 @@ object Util {
   //    "UAG" -> 'X',
   //    "UAA" -> 'X',
 
+  /**
+   * Write a list of permutations to the file name provided
+   */
+  def writeListOfPermutationsToFile(fileName: String, permutations: List[List[Int]]) {
+    val dateFile = new java.io.File(ClassLoader.getSystemResource(fileName).toURI())
+
+    val answerString = new StringBuffer(permutations.size + "\n")
+
+    for (sequence <- permutations) {
+      answerString.append(sequence.mkString(" ") + "\n")
+    }
+
+    writeToFile(dateFile, answerString.toString())
+  }
+
 }

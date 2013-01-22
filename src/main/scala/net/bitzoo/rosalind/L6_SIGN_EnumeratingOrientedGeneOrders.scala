@@ -2,36 +2,33 @@ package net.bitzoo.rosalind
 
 object EnumeratingOrientedGeneOrders {
 
-  val options = (1 to 4).toList
-  var sequences = List[List[Int]]()
-
-  def main(args: Array[String]): Unit = {
-
-    val fileName = "perm_answer.txt"
-    val dateFile = new java.io.File(ClassLoader.getSystemResource(fileName).toURI())
-    val answer = new StringBuffer("")
-
-    tryAllPermutations(options, List[Int]())
-    answer.append(sequences.size + "\n")
-    for (sequence <- sequences) {
-      answer.append(sequence.mkString(" ") + "\n")
-    }
-
-    Util.writeToFile(dateFile, answer.toString())
-    Console.println(answer.toString())
-
+  /**
+   * Given a positive integer, less than or equal to six,
+   * return a list of all possible permutations in any order.
+   */
+  def getAnswer(permutationLength: Int): List[List[Int]] = {
+    val options = (1 to permutationLength).toList
+    var sequences = List[List[Int]]()
+    tryAllPermutations(options, List[Int](), sequences)
   }
-  
 
-  def tryAllPermutations(opts: List[Int], seq: List[Int]) {
+  /**
+   * Try all permutations, given a list of the current options and the sequence so far.
+   * When there are no more options, add the sequence so far to the master sequence list.
+   */
+  def tryAllPermutations(opts: List[Int], seqSoFar: List[Int], listOfSeqs: List[List[Int]]): List[List[Int]] = {
+    var latestListOfSeqs = listOfSeqs
+
     if (opts.isEmpty) {
-      sequences = seq :: sequences
+      latestListOfSeqs = seqSoFar :: latestListOfSeqs
     } else {
       for (opt <- opts) {
-        tryAllPermutations(opts.filter(a => a != opt), opt :: seq)
-        tryAllPermutations(opts.filter(a => a != opt), -opt :: seq)
+        latestListOfSeqs = tryAllPermutations(opts.filter(a => a != opt), opt :: seqSoFar, latestListOfSeqs)
+        latestListOfSeqs = tryAllPermutations(opts.filter(a => a != opt), -opt :: seqSoFar, latestListOfSeqs)
       }
     }
+    
+    latestListOfSeqs
   }
 
 }

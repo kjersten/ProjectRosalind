@@ -6,8 +6,8 @@ class L5_PERM_test extends FunSuite {
 
   test("run the sample test provided by Project Rosalind") {
     val number = 3
-    val answer = EnumeratingGeneOrders.getAnswer(number)  
-    
+    val answer = EnumeratingGeneOrders.getAnswer(number)
+
     assert(answer.size === 6)
     assert(answer.contains(List(1, 2, 3)))
     assert(answer.contains(List(1, 3, 2)))
@@ -20,18 +20,7 @@ class L5_PERM_test extends FunSuite {
   test("run the real test provided by Project Rosalind") {
     val number = 7
     val answer = EnumeratingGeneOrders.getAnswer(number)
-    
-    // write answer to file
-    val fileName = "L5_PERM_answer.txt"
-    val dateFile = new java.io.File(ClassLoader.getSystemResource(fileName).toURI())
-    
-    val answerString = new StringBuffer(answer.size + "\n")
-
-    for (sequence <- answer) {
-      answerString.append(sequence.mkString(" ") + "\n")
-    }
-
-    Util.writeToFile(dateFile, answerString.toString())
+    Util.writeListOfPermutationsToFile("L5_PERM_answer.txt", answer)
   }
 
 }
