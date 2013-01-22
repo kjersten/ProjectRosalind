@@ -2,34 +2,33 @@ package net.bitzoo.rosalind
 
 object EnumeratingGeneOrders {
 
-  val options = List(1, 2, 3, 4, 5, 6, 7)
-  var sequences = List[List[Int]]()
+  /**
+   * Given a positive integer less than or equal to 7,
+   * return a list of the permutations in any order.
+   */
+  def getAnswer(permutationLength: Int): List[List[Int]] = {
 
-  def main(args: Array[String]): Unit = {
+    val options = (1 until permutationLength + 1).toList
+    var sequences = List[List[Int]]()
+    sequences = tryAllPermutations(options, List[Int](), sequences)
 
-    val fileName = "L5_PERM_answer.txt"
-    val dateFile = new java.io.File(ClassLoader.getSystemResource(fileName).toURI())
-    val answer = new StringBuffer("")
-
-    tryAllPermutations(options, List[Int]())
-    answer.append(sequences.size + "\n")
-    for (sequence <- sequences) {
-      answer.append(sequence.mkString(" ") + "\n")
-    }
-
-    Util.writeToFile(dateFile, answer.toString())
-    Console.println(answer.toString())
-
+    sequences
   }
 
-  def tryAllPermutations(opts: List[Int], seq: List[Int]) {
+  def tryAllPermutations(opts: List[Int], seqSoFar: List[Int], listOfSeqs: List[List[Int]]): 
+      List[List[Int]] = {
+    var latestListOfSeqs = listOfSeqs
+    
     if (opts.isEmpty) {
-      sequences = seq :: sequences
+      latestListOfSeqs = seqSoFar :: latestListOfSeqs
     } else {
       for (opt <- opts) {
-        tryAllPermutations(opts.filter(a => a != opt), opt :: seq)
+        latestListOfSeqs = 
+          tryAllPermutations(opts.filter(a => a != opt), opt :: seqSoFar, latestListOfSeqs)
       }
     }
+    
+    latestListOfSeqs
   }
 
 }
