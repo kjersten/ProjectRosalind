@@ -8,7 +8,7 @@ object CountingPointMutations {
    * corresponding symbols that differ between the two strings
    */
   def getAnswer(fileName: String): Int = {
-    val dnaStrings = Util.getListOfDnaStringsFromFile(fileName)
+    val dnaStrings = Util.getListOfStringsFromFile(fileName)
     var hammingDistance = 0
 
     for (i <- 0 to dnaStrings(0).length - 1) {

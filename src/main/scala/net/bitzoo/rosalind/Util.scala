@@ -52,22 +52,25 @@ object Util {
     dnaStrings
   }
 
-  /** parse strings from a file, assuming that each line contains a DNA string */
-  def getListOfDnaStringsFromFile(fileName: String): List[String] = {
+  /** 
+   * Parse strings from a file, assuming that 
+   * each line is a self-contained string 
+   */
+  def getListOfStringsFromFile(fileName: String): List[String] = {
 
     // read from a file
     val file = new java.io.File(ClassLoader.getSystemResource(fileName).toURI())
     val fileStream = scala.io.Source.fromFile(file)
-    var dnaStrings = List[String]()
+    var strings = List[String]()
 
     // populate list of DNA strings
-    fileStream.getLines().foreach(line => dnaStrings = line :: dnaStrings)
+    fileStream.getLines().foreach(line => strings = line :: strings)
 
     // close the file
     fileStream.close()
 
     // return the list
-    dnaStrings
+    strings
   }
 
 }

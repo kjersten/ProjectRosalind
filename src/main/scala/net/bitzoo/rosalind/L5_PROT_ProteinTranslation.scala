@@ -2,20 +2,27 @@ package net.bitzoo.rosalind
 
 object ProteinTranslation {
 
-  def main(args: Array[String]): Unit = {
-
-//    val fileName = "L5_PROT_test.txt"
-    val fileName = "L5_PROT_real.txt"
+  /**
+   * Translate the given RNA string into a protein
+   */
+  def getAnswer(fileName: String): String = {
     val rnaCodons = getRnaCodonsFromFile(fileName)
-    var proteinString = new StringBuilder
-    
-    for(rnaCodon <- rnaCodons) {
-      val aminoAcid = rnaCodonTable.get(rnaCodon)
-      if(!aminoAcid.isEmpty) proteinString += aminoAcid.get
-    }
-    
-    Console.println(proteinString)
+    var protein = new StringBuilder
 
+    for (rnaCodon <- rnaCodons) {
+      val aminoAcid = rnaCodonTable.get(rnaCodon)
+      if (!aminoAcid.isEmpty) protein += aminoAcid.get
+    }
+
+    protein.toString()
+  }
+
+  /** 
+   * Parse out a list of the RNA codons from the first line of the file 
+   */
+  def getRnaCodonsFromFile(fileName: String): List[String] = {
+    val lines = Util.getListOfStringsFromFile(fileName)
+    lines(0).grouped(3).toList
   }
 
   val rnaCodonTable = Map(
@@ -85,20 +92,5 @@ object ProteinTranslation {
   //    "UGA" -> 'X',
   //    "UAG" -> 'X',
   //    "UAA" -> 'X',
-
-  def getRnaCodonsFromFile(fileName: String): List[String] = {
-
-    // read from a file
-    val file = new java.io.File(ClassLoader.getSystemResource(fileName).toURI())
-    val fileStream = scala.io.Source.fromFile(file)
-    val rnaString = fileStream.mkString
-    val rnaCodons = rnaString.grouped(3).toList
-
-    // close the file
-    fileStream.close()
-
-    // return the map
-    rnaCodons
-  }
 
 }

@@ -9,7 +9,7 @@ object ConsensusAndProfile {
    * return a consensus string and a profile matrix for the collection
    */
   def getAnswer(fileName: String): Tuple2[Map[Char, Array[Int]], Array[Char]] = {
-    val dnaStrings = Util.getListOfDnaStringsFromFile(fileName)
+    val dnaStrings = Util.getListOfStringsFromFile(fileName)
     val profile = getProfile(dnaStrings)
     val consensus = getConsensus(profile, dnaStrings.first.length)
     
