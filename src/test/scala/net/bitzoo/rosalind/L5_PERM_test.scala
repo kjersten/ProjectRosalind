@@ -18,7 +18,7 @@ class L5_PERM_test extends FunSuite {
   }
 
   test("run the real test provided by Project Rosalind") {
-    val number = 6
+    val number = 7
     val answer = EnumeratingGeneOrders.getAnswer(number)
     
     // write answer to file
