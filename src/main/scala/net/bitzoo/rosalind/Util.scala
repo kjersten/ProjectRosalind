@@ -52,9 +52,9 @@ object Util {
     dnaStrings
   }
 
-  /** 
-   * Parse strings from a file, assuming that 
-   * each line is a self-contained string 
+  /**
+   * Parse strings from a file, assuming that
+   * each line is a self-contained string
    */
   def getListOfStringsFromFile(fileName: String): List[String] = {
 
@@ -72,5 +72,75 @@ object Util {
     // return the list
     strings
   }
+
+  // a table translating RNA codons into amino acids
+  val rnaCodonTable = Map(
+    "UUU" -> 'F',
+    "CUU" -> 'L',
+    "AUU" -> 'I',
+    "GUU" -> 'V',
+    "UUC" -> 'F',
+    "CUC" -> 'L',
+    "AUC" -> 'I',
+    "GUC" -> 'V',
+    "UUA" -> 'L',
+    "CUA" -> 'L',
+    "AUA" -> 'I',
+    "GUA" -> 'V',
+    "UUG" -> 'L',
+    "CUG" -> 'L',
+    "AUG" -> 'M',
+    "GUG" -> 'V',
+    "UCU" -> 'S',
+    "CCU" -> 'P',
+    "ACU" -> 'T',
+    "GCU" -> 'A',
+    "UCC" -> 'S',
+    "CCC" -> 'P',
+    "ACC" -> 'T',
+    "GCC" -> 'A',
+    "UCA" -> 'S',
+    "CCA" -> 'P',
+    "ACA" -> 'T',
+    "GCA" -> 'A',
+    "UCG" -> 'S',
+    "CCG" -> 'P',
+    "ACG" -> 'T',
+    "GCG" -> 'A',
+    "UAU" -> 'Y',
+    "CAU" -> 'H',
+    "AAU" -> 'N',
+    "GAU" -> 'D',
+    "UAC" -> 'Y',
+    "CAC" -> 'H',
+    "AAC" -> 'N',
+    "GAC" -> 'D',
+    "CAA" -> 'Q',
+    "AAA" -> 'K',
+    "GAA" -> 'E',
+    "CAG" -> 'Q',
+    "AAG" -> 'K',
+    "GAG" -> 'E',
+    "UGU" -> 'C',
+    "CGU" -> 'R',
+    "AGU" -> 'S',
+    "GGU" -> 'G',
+    "UGC" -> 'C',
+    "CGC" -> 'R',
+    "AGC" -> 'S',
+    "GGC" -> 'G',
+    "CGA" -> 'R',
+    "AGA" -> 'R',
+    "GGA" -> 'G',
+    "UGG" -> 'W',
+    "CGG" -> 'R',
+    "AGG" -> 'R',
+    "GGG" -> 'G')
+  // stop codes... for the purposes of the exercises so far, 
+  // we don't need to do anything special with them
+  // so just leave them out
+  //    "UGA" -> 'X',
+  //    "UAG" -> 'X',
+  //    "UAA" -> 'X',
 
 }
