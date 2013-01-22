@@ -24,7 +24,7 @@ object Util {
    * >Rosalind_5959
    * CCATCGGTAGCGCATCCTTAGTCCAATTAAGTCCCTATCCAG
    */
-  def getDnaStringsFromFile(fileName: String): Map[String, String] = {
+  def getFastaDnaStringsFromFile(fileName: String): Map[String, String] = {
 
     // read from a file
     val file = new java.io.File(ClassLoader.getSystemResource(fileName).toURI())

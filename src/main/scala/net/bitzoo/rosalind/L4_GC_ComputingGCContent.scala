@@ -10,7 +10,7 @@ object GCContent {
   def getAnswer(fileName: String): Tuple2[String, String] = {
 
     // parse the list of DNA strings from the file
-    val dnaStrings = Util.getDnaStringsFromFile(fileName)
+    val dnaStrings = Util.getFastaDnaStringsFromFile(fileName)
     
     // calculate the GC content of each DNA string
     var dnaGCContent = Map[String, BigDecimal]()
