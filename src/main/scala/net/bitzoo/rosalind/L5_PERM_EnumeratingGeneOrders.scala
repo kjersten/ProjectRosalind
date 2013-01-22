@@ -15,6 +15,10 @@ object EnumeratingGeneOrders {
     sequences
   }
 
+  /** 
+   * Try all permutations, given a list of the current options and the sequence so far.
+   * When there are no more options, add the sequence so far to the master sequence list.
+   */
   def tryAllPermutations(opts: List[Int], seqSoFar: List[Int], listOfSeqs: List[List[Int]]): 
       List[List[Int]] = {
     var latestListOfSeqs = listOfSeqs
