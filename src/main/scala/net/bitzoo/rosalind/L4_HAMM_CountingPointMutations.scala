@@ -8,11 +8,11 @@ object CountingPointMutations {
    * corresponding symbols that differ between the two strings
    */
   def getAnswer(fileName: String): Int = {
-    val dnaStrings = Util.getTwoDnaStringsFromFile(fileName)
+    val dnaStrings = Util.getListOfDnaStringsFromFile(fileName)
     var hammingDistance = 0
 
-    for (i <- 0 to dnaStrings._1.length - 1) {
-      if (dnaStrings._1.charAt(i) != dnaStrings._2.charAt(i)) hammingDistance += 1
+    for (i <- 0 to dnaStrings(0).length - 1) {
+      if (dnaStrings(0).charAt(i) != dnaStrings(1).charAt(i)) hammingDistance += 1
     }
 
     hammingDistance

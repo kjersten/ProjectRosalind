@@ -52,21 +52,22 @@ object Util {
     dnaStrings
   }
 
-  /** parse two strings from a file, assuming that each line contains a DNA string */
-  def getTwoDnaStringsFromFile(fileName: String): Tuple2[String, String] = {
+  /** parse strings from a file, assuming that each line contains a DNA string */
+  def getListOfDnaStringsFromFile(fileName: String): List[String] = {
 
     // read from a file
     val file = new java.io.File(ClassLoader.getSystemResource(fileName).toURI())
     val fileStream = scala.io.Source.fromFile(file)
+    var dnaStrings = List[String]()
 
-    var string1 = fileStream.getLine(0)
-    var string2 = fileStream.getLine(1)
+    // populate list of DNA strings
+    fileStream.getLines().foreach(line => dnaStrings = line :: dnaStrings)
 
     // close the file
     fileStream.close()
 
-    // return the tuple
-    (string1, string2)
+    // return the list
+    dnaStrings
   }
 
 }

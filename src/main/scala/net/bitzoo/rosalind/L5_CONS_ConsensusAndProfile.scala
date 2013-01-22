@@ -2,13 +2,27 @@ package net.bitzoo.rosalind
 
 object ConsensusAndProfile {
 
-  val bases = List('A', 'C', 'G', 'T')
+  private val bases = List('A', 'C', 'G', 'T')
 
-  def main(args: Array[String]): Unit = {
+  /**
+   * Given a list of no more than 10 DNA strings,
+   * return a consensus string and a profile matrix for the collection
+   */
+  def getAnswer(fileName: String): Tuple2[Map[Char, Array[Int]], Array[Char]] = {
+    val dnaStrings = Util.getListOfDnaStringsFromFile(fileName)
+    val profile = getProfile(dnaStrings)
+    val consensus = getConsensus(profile, dnaStrings.first.length)
+    
+    (profile, consensus)
+  }
 
-    val fileName = "L5_CONS_test.txt"
-    val fileName2 = "L5_CONS_real.txt"
-    val dnaStrings = getDnaStringsFromFile(fileName2)
+  /**
+   * For a list of DNA strings, all of equal length,
+   * return a profile matrix.  A profile matrix is a matrix encoding 
+   * the number of times that each symbol of the alphabet occurs 
+   * in each position from a collection of strings.
+   */
+  def getProfile(dnaStrings: List[String]): Map[Char, Array[Int]] = {
     val profile = getInitialProfileMap(dnaStrings.first.length)
 
     for (dnaString <- dnaStrings) {
@@ -18,43 +32,45 @@ object ConsensusAndProfile {
         profilesForAA(i) = profilesForAA(i) + 1
       }
     }
-    
-    val consensus = Array.ofDim[Char](dnaStrings.first.length)
-    for(i <- 0 to consensus.size - 1) {
-      // if a and b are equal, b will win... Rosalind does not require all possibilities
-      val mostCommon = profile.reduceLeft((a, b) => if(a._2(i) > b._2(i)) a else b)
-      consensus(i) = mostCommon._1
-    }
 
-    println(consensus.mkString(""))
-    profile.foreach(a => println(a._1 + ": " + a._2.mkString(" ")))
+    profile
   }
 
-  def getInitialProfileMap(arrayLength: Int): Map[Char, Array[Int]] = {
+  /** 
+   * Return a map where each base pair has an empty array of integers, 
+   * one integer place for each base pair in the DNA string.
+   * For example, the map would look like this if the DNA string had 5 base pairs:
+   * A: 0 0 0 0 0 
+   * C: 0 0 0 0 0
+   * G: 0 0 0 0 0
+   * T: 0 0 0 0 0
+   */
+  def getInitialProfileMap(numBasePairsInDnaString: Int): Map[Char, Array[Int]] = {
     var profile = Map[Char, Array[Int]]()
 
     // the map should have an int list for each base pair
-    bases.foreach(x => profile = profile + (x -> Array.ofDim[Int](arrayLength)))
+    bases.foreach(x => profile = profile + (x -> Array.ofDim[Int](numBasePairsInDnaString)))
 
     // return the map
     profile
   }
 
-  def getDnaStringsFromFile(fileName: String): List[String] = {
+  /**
+   * Given a profile matrix, return the consensus.
+   * The consensus is an array of the most common symbol at each position.
+   * If any position has more than one most common symbol, choose a winner
+   * arbitrarily.  Project Rosalind doesn't care which you choose.
+   */
+  def getConsensus(profile: Map[Char, Array[Int]], arrayLength: Int): Array[Char] = {
+    val consensus = Array.ofDim[Char](arrayLength)
+    
+    for (i <- 0 to consensus.size - 1) {
+      // if a and b are equal, b will win... Rosalind does not require all possibilities
+      val mostCommon = profile.reduceLeft((a, b) => if (a._2(i) > b._2(i)) a else b)
+      consensus(i) = mostCommon._1
+    }
 
-    // read from a file
-    val file = new java.io.File(ClassLoader.getSystemResource(fileName).toURI())
-    val fileStream = scala.io.Source.fromFile(file)
-    var dnaStrings = List[String]()
-
-    // populate list of DNA strings
-    fileStream.getLines().foreach(line => dnaStrings = line :: dnaStrings)
-
-    // close the file
-    fileStream.close()
-
-    // return the list
-    dnaStrings
+    consensus
   }
 
 }
